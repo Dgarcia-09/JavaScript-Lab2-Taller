@@ -59,8 +59,10 @@ export const saveAppointment = async (req, res) => {
 
 export const getAppointments = async (req, res) => {
   try{
+
+      const {uid} = req.params
       const { limite = 5, desde = 0 } = req.query
-      const query = { }
+      const query = {user:uid}
 
       const [total, appointment ] = await Promise.all([
           Appointment.countDocuments(query),
@@ -81,4 +83,29 @@ export const getAppointments = async (req, res) => {
           error: err.message
       })
   }
+}
+
+
+export const updateAppointment = async (req, res) =>{
+  try{
+    const {aid} = req.params;
+    const data = req.body;
+
+    const appointment = await Appointment.findByIdAndUpdate(aid, data, {new: true})
+    res.status(200).json({
+      success: true,
+      msg: 'Cita Actualizada',
+      appointment,
+  });
+
+
+
+  }catch(err){
+        res.status(500).json({
+        success: false,
+        msg: 'Error al actualizar la cita',
+       error: err.message
+     });
+  }
+
 }

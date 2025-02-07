@@ -26,4 +26,10 @@ const appointmentSchema = Schema({
     versionKey: false,
 });
 
+appointmentSchema.methods.toJSON = function(){
+    const{_id, ...appointment } = this.toObject()
+    appointment.aid = _id
+    return appointment
+}
+
 export default model('Appointment', appointmentSchema);
