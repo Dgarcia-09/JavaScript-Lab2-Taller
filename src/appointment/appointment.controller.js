@@ -109,3 +109,24 @@ export const updateAppointment = async (req, res) =>{
   }
 
 }
+
+export const updateStatus = async (req, res) => {
+  try {
+    const { aid } = req.params;
+    const appointment = await Appointment.findById(aid);
+    if (appointment) {
+      await Appointment.findByIdAndUpdate(aid, { status: "CANCELED" }, { new: true });
+      return res.status(200).json({
+      success: true,
+      message: "Estado actualizado perro",
+    });
+  }
+
+  } catch (err) {
+    return res.status(500).json({
+      success: false,
+      message: "Error al actualizar el estado",
+      error: err.message,
+    });
+  }
+};
