@@ -120,6 +120,36 @@ JWT_SECRET=<tu_secreto_jwt>
       "user": "string"
     }
     ```
+### Funcionalidades Laboratorio 2 de taller
+
+- **Actualizar foto de usuario**
+  - **URL:** `/adoptionSystem/v1/user/updateProfilePicture/:uid(idUsuario)`
+  - **Método:** `PATCH`
+  -   En el FormData suba una nueva imagen en el campo profilePicture
+ 
+    
+
+- **Listar Citas de un usuario**
+  - **URL:** `/adoptionSystem/v1/appointment/:uid(idUsuario)`
+  - **Método:** `GET`
+  - Colocar el Id del usuario al que queremos ver sus citas registradas
+ 
+- **Actualizar Cita**
+  - **URL:** `/adoptionSystem/v1/appointment/updtateAppointment/:aid(IdDeLaCita)`
+  - **Método:** `PUT`
+  - **Cuerpo:**
+    ```json
+    {
+      "date": "2023-10-15T10:00:00Z",
+      "status": "COMPLETED",
+    }
+    ```
+
+- **Cancelar Cita**
+  - **URL:** `/adoptionSystem/v1/appointment/cancelAppointment/:aid(IdDeLaCita)`
+  - **Método:** `PATCH`
+  - Solo es necesario colocar el id de la cita en la ruta para cambiar el estado a cancelado
+ 
 
 ## Funcionalidades Adicionales
 
